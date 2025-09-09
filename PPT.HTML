@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Punjab Floods — 8-Tab Deck (Print-Safe, Expanded)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{
+    --blue:#1e88e5;
+    --blue-700:#2d9bff;
+    --blue-900:#0b3d73;
+    --ink:#0b2239;
+    --muted:#5a6f8b;
+    --green:#00bfa6;
+    --purple:#8e24aa;
+    --orange:#ff6f61;
+    --radius:22px;
+    --shadow:0 12px 36px rgba(10,30,60,.18);
+    --shadow-lg:0 22px 60px rgba(10,30,60,.20);
+    --gap:16px;
+  }
+
+  *{ box-sizing:border-box; }
+  html, body{ height:100%; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    color: var(--blue-900);
+    background:
+      radial-gradient(1100px 520px at 6% -10%, #8ec5ff33, transparent 60%),
+      radial-gradient(900px 600px at 120% 10%, #a0d7ff29, transparent 60%),
+      linear-gradient(180deg, #f6fbff 0%, #eef5fc 100%);
+  }
+
+  .deck{ max-width: 1280px; margin: 0 auto; padding: 30px 22px 60px; }
+  .slide{
+    position: relative; border-radius: var(--radius); padding: 38px;
+    background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.94));
+    box-shadow: var(--shadow-lg); min-height: 720px; display: grid; gap: 18px; overflow: hidden;
+  }
+  .slide:not(:last-child){ margin-bottom: 30px; }
+
+  /* Video slide specific styles */
+  .video-slide{
+    padding: 24px;
+    background: linear-gradient(180deg, #0b2239, #0b3d73);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .video-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 12px 0;
+  }
+
+  .video-title{
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+
+  .video-container{
+    flex: 1;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .video-player{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+  }
+
+  /* Fallback message for unsupported video */
+  .video-fallback{
+    padding: 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .video-controls-info{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .control-tip{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .control-icon{
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  /* Cover (Home) — print-safe via inline SVG */
+  .cover{ padding:0; display:grid; grid-template-rows:1fr; background:none; }
+  .cover-art{ position:absolute; inset:0; z-index:1; }
+  .cover-text{
+    position:relative; z-index:2; display:grid; align-content:center; gap:14px;
+    padding:54px; min-height:720px; color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.35);
+  }
+  .title{ font-size: clamp(28px, 5vw, 56px); line-height: 1.04; font-weight: 1000; letter-spacing: .2px; margin: 0; }
+  .subtitle{ font-size: clamp(16px, 2vw, 22px); color: #e9f2ff; margin: 6px 0 0; }
+  .pill{
+    display:inline-block; padding:8px 12px; border-radius:999px; font-weight:900; font-size:14px;
+    color:#0b2a4b; background:#eef6ff; border:1px solid #dfe6f4; box-shadow:0 2px 10px rgba(15,40,80,.12);
+  }
+  .pill-video{
+    color:#fff; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+  }
+  .cover-facts{ display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; }
+  .fact{
+    display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background: rgba(255,255,255,.12);
+    color:#f5fbff; font-weight:900; border:1px solid rgba(255,255,255,.28);
+  }
+  .fact .ico{ font-size:20px }
+
+  /* Layout helpers */
+  .kicker{ font-weight:900; color:var(--blue-900); opacity:.9; font-size:16px; }
+  .row{ display:flex; flex-wrap:wrap; gap: var(--gap); }
+  .col-1{ flex:1 1 100%; }
+  .col-2{ flex:1 1 calc(50% - var(--gap)); min-width: 320px; }
+  .col-3{ flex:1 1 calc(33.33% - var(--gap)); min-width: 260px; }
+  .col-4{ flex:1 1 calc(25% - var(--gap)); min-width: 220px; }
+
+  .card{
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    border:1px solid #dfe9f6; border-radius: 18px; padding: 16px; box-shadow: 0 8px 24px rgba(4,36,69,.08);
+  }
+  .card .head{ display:flex; align-items:center; gap:10px; margin-bottom:6px; font-weight:1000; color: var(--ink); font-size:18px; }
+  .card .ico{
+    width:44px;height:44px; display:flex;align-items:center;justify-content:center; border-radius:12px;
+    background: linear-gradient(180deg, #eef6ff, #e1f4ff); color:#0a58ca; font-size:22px;
+    box-shadow: inset 0 2px 8px rgba(20,60,120,.08), 0 8px 18px rgba(10,30,60,.10); flex:0 0 44px;
+  }
+  .card.kind-cause .ico{ background: linear-gradient(180deg, #e7fbf6, #d6f7ef); color:#027c6d }
+  .card.kind-impact .ico{ background: linear-gradient(180deg, #ffe9e6, #ffd9d4); color:#b23b2f }
+  .card.kind-safety .ico{ background: linear-gradient(180deg, #efe4ff, #e7d8ff); color:#6a1b9a }
+
+  .muted{ color: var(--muted); }
+  ul{ margin: 8px 0 0 20px; padding: 0; }
+  li{ margin: 6px 0; }
+  .tight li{ margin: 4px 0; }
+
+  .banner{
+    background: linear-gradient(180deg, #fffffe, #eef6ff);
+    border:1px dashed #cfe0f5; border-radius: 16px; padding: 12px 14px; font-weight: 900; color: var(--ink);
+  }
+
+  /* Bars (simple charts) */
+  .bars{ display:flex; align-items:flex-end; gap:14px; height:220px; }
+  .bar{ flex:1; position:relative; border-radius:14px 14px 8px 8px; background: linear-gradient(180deg, #2d9bff, #1e88e5); box-shadow: inset 0 12px 22px rgba(30,136,229,.28); }
+  .bar::after{ content: attr(data-label) " • " attr(data-val) "%"; position:absolute; inset:auto 0 -26px 0; text-align:center; font-size:14px; color:#334e6f; font-weight:900; }
+  .bars.alt .bar{ background: linear-gradient(180deg, #ffb680, #ff8f5a); box-shadow: inset 0 12px 22px rgba(255,140,90,.28); }
+
+  /* Tables */
+  table{ width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius: 14px; border:1px solid #dfe9f6; background:#fff; }
+  th, td{ padding: 12px 12px; vertical-align: top; }
+  thead th{ background: linear-gradient(180deg,#fffffe,#eef6ff); color: var(--ink); font-weight:1000; border-bottom:1px solid #dfe9f6; }
+  tbody tr + tr td{ border-top:1px solid #eef3fb; }
+  tbody td:first-child{ font-weight:900; color: var(--blue-900); }
+
+  /* Map block (PNG-first) */
+  .map-wrap{ display:grid; grid-template-columns: 1.4fr .9fr; gap: var(--gap); min-height: 0; }
+  .map-box{
+    background:linear-gradient(180deg, #eef6ff, #e7f2ff); border:1px solid #cfe0f5; border-radius:18px;
+    overflow:hidden; position:relative; min-height: 460px; box-shadow: var(--shadow);
+  }
+  .map-legend{
+    background:linear-gradient(180deg, #fff, #f7fbff); border:1px solid #dfe9f6; border-radius:12px;
+    position:absolute; top:12px; left:12px; padding:8px 12px; font-weight:900; color:var(--ink); box-shadow:0 10px 30px rgba(0,0,0,.08);
+  }
+  .map-img{
+    width:100%; height:100%; display:block; object-fit:cover; object-position:center;
+    background:#ddeafc;
+  }
+  .small{ font-size: 13px; color: var(--muted); }
+
+  /* Hide visually but keep space in layout */
+  .hide-keep-space { visibility: hidden; }
+
+  /* Print settings */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print{
+    body{ background: none; }
+    .deck{ padding: 0; }
+    .slide{
+      min-height: auto; break-after: page; page-break-after: always; border: 0; box-shadow: none; margin: 0; border-radius: 0;
+    }
+    .video-slide{ display: none; } /* Hide video slide when printing */
+    *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="deck">
+
+    <!-- 1) HOME -->
+    <section class="slide cover" aria-label="Home">
+      <div class="cover-art" aria-hidden="true">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+          <defs>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0b3d73"/>
+              <stop offset="1" stop-color="#1e88e5"/>
+            </linearGradient>
+            <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#8ec5ff" stop-opacity="0.7"/>
+              <stop offset="1" stop-color="#8ec5ff" stop-opacity="0"/>
+            </linearGradient>
+            <clipPath id="clip"><rect x="0" y="0" width="1600" height="900" rx="36" ry="36"></rect></clipPath>
+          </defs>
+          <rect x="0" y="0" width="1600" height="900" fill="url(#bgGrad)"></rect>
+          <image href="assets/flooded-fields.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid slice" opacity="0.45" clip-path="url(#clip)"></image>
+          <rect x="-100" y="-60" width="900" height="300" fill="url(#glow)" transform="rotate(8)"></rect>
+          <rect x="400" y="600" width="1000" height="260" fill="url(#glow)" transform="rotate(-6)"></rect>
+          <path d="M0,820 C280,760 520,840 800,790 C1080,740 1240,800 1600,750 L1600,900 L0,900 Z" fill="rgba(255,255,255,0.14)"/>
+          <path d="M0,860 C300,800 520,880 780,830 C1040,780 1260,830 1600,800 L1600,900 L0,900 Z" fill="rgba(255,255,255,0.10)"/>
+        </svg>
+      </div>
+      <div class="cover-text">
+       <span class="pill">1 / 8 • Introduction</span>
+        <h1 class="title">Punjab Floods 2025<span class="hide-keep-space" aria-hidden="true"> — Student Awareness Presentation</span></h1>
+        <div class="subtitle hide-keep-space" aria-hidden="true">Good morning, respected Director sir , Principal and teachers . We, the students of Class 11 (Arts), are here to raise awareness about the Punjab Floods 2025.</div>
+        <div class="cover-facts">
+          <div class="fact"><span class="ico">📚</span> What we'll cover: Causes, impacts on people & agriculture, infrastructure damage</div>
+          <div class="fact"><span class="ico">🛡️</span> Safety focus: Precautions and preparedness for our community</div>
+        </div>
+        <div class="cover-facts">
+          <div class="fact"><span class="ico">🎯</span> Our aim: Learn from this event so our community can stay safer and better prepared</div>
+          <div class="fact"><span class="ico">🎬</span> Starting with: Short video showing the flood situation across Punjab</div>
+        </div>
+        <div class="cover-facts">
+          <div class="fact"><span class="ico">💡</span> After the video: Detailed discussion on causes, impacts, and safety measures</div>
+          <div class="fact"><span class="ico">🤝</span> Together: Building awareness for a more resilient community</div>
+        </div>      
+      </div>
+    </section>
+
+ <!-- 2) VIDEO SLIDE -->
+<section class="slide video-slide" aria-label="Video Presentation">
+  <div class="video-header">
+    <div>
+      <span class="pill pill-video">2 / 8 • Video Presentation</span>
+      <h2 class="video-title">Punjab Floods 2025 - Ground Reality</h2>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <video class="video-player" controls preload="metadata" playsinline poster="video-poster.jpg">
+      <source src="punjab-floods-2025.webm" type="video/webm">
+      Your browser doesn't support HTML5 video.
+      <a href="punjab-floods-2025.webm">Download the video</a>.
+    </video>
+  </div>
+
+  <div class="video-controls-info">
+    <div class="control-tip">
+      <div class="control-icon">▶️</div>
+      <span>Click play button or spacebar to start</span>
+    </div>
+    <div class="control-tip">
+      <div class="control-icon">🔊</div>
+      <span>Adjust volume as needed</span>
+    </div>
+    <div class="control-tip">
+      <div class="control-icon">⛶</div>
+      <span>Click fullscreen for better viewing</span>
+    </div>
+  </div>
+</section>
+
+    <!-- 3) CAUSES -->
+    <section class="slide" aria-label="Causes">
+      <div class="kicker">3 / 8 • Causes</div>
+      <h2 class="title">Why Punjab floods</h2>
+      <div class="row">
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🌧</span> Heavy Monsoon Rainfall</div><div class="muted">During the monsoon season (July to September), Punjab often receives excessive rainfall in a short period, causing rivers and drainage systems to overflow.
+</div></div></div>
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🌊</span> Overflowing Rivers</div><div class="muted">Punjab is crossed by major rivers like the Sutlej, Beas, and Ravi. Sudden heavy rains or excessive upstream water release can cause these rivers to overflow their banks, leading to floods.
+.</div></div></div>
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🏗️</span> Poor Drainage System</div><div class="muted">In many areas, especially rural regions, the drainage infrastructure is outdated or insufficient, preventing proper drainage of rainwater and leading to waterlogging and floods.</div></div></div>
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🏙️</span> Deforestation
+</div><div class="muted">Deforestation in the catchment areas reduces the ability of the soil to absorb rainwater, causing more surface runoff and increasing the risk of floods.
+</div></div></div>
+      </div>
+      <div class="row">
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🛠️</span> Encroachment of Waterways
+</div><div class="muted">Illegal construction and encroachment on riverbeds and floodplains restrict natural flow paths of rivers, causing water to accumulate in populated areas.
+</div></div></div>
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🌩️</span> Climate Change</div><div class="muted">Climate change increases the frequency and intensity of extreme weather events, such as intense rainfall and cloudbursts, contributing to sudden flooding.
+</div></div></div>
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">⛏️</span>  Melting of Glaciers in Himalayas
+</div><div class="muted">Punjab receives water from rivers originating in the Himalayas. Rapid glacier melt due to rising temperatures increases river flow beyond normal capacity. increasing flood risk</div></div></div>
+        <div class="col-2"><div class="card kind-cause"><div class="head"><span class="ico">🧱</span> Inadequate Reservoir Management</div><div class="muted">Improper management of dams and reservoirs upstream can lead to the sudden release of water during heavy rainfall, contributing to downstream flooding in Punjab.</div></div></div>
+      </div>
+    </section>
+
+    <!-- 4) IMPACT -->
+    <section class="slide" aria-label="Impact">
+      <div class="kicker">4 / 8 • Impact</div>
+      <h2 class="title">Who and what gets affected</h2>
+      <div class="row">
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🚶‍♂️</span> Displacement</div><div class="muted">Families are forced to leave their homes, losing shelter and security, often depending on temporary camps.</div></div></div>
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🌾</span> Crop loss</div><div class="muted">Fields get waterlogged, soil covered with silt, reducing harvest and farmers’ income, while replanting adds more costs.</div></div></div>
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🏚️</span> Home damage</div><div class="muted">Floodwater damages walls, floors, wiring, and appliances. Houses may become unsafe for living until repaired.</div></div></div>
+      </div>
+      <div class="row">
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🦟</span> Disease</div><div class="muted">Standing water spreads diarrhea, skin infections, and mosquito-borne diseases like malaria and dengue.</div></div></div>
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🛣️</span> Roads</div><div class="muted">Connectivity breaks as bridges weaken and low-lying roads get submerged, delaying supplies and transport..</div></div></div>
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🚰</span> Water unsafe</div><div class="muted">Drinking water sources get contaminated, making people dependent on boiled or treated water.</div></div></div>
+      </div>
+      <div class="row">
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🐄</span> Livestock</div><div class="muted">Animals face infections, hunger, and stress. Many may die if fodder, shelter, or veterinary help is lacking.</div></div></div>
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🧠</span> Stress</div><div class="muted">People suffer fear, anxiety, and fatigue. The loss of home, income, or loved ones worsens mental health.</div></div></div>
+        <div class="col-3"><div class="card kind-impact"><div class="head"><span class="ico">🛶</span> Relief</div><div class="muted">Boats, shelters, and food aid are needed. Communities depend on outside help for survival and recovery.</div></div></div>
+      </div>
+    </section>
+
+<!-- 5) MAP (PNG-first) -->
+<section class="slide" aria-label="Map">
+  <div class="kicker">5 / 8 • Map</div>
+  <h2 class="title">Flood risk zones and their locations</h2>
+  <div class="map-wrap">
+    <div class="map-box">
+      <div class="map-legend">PNG map (print-friendly) • Glow = flood-prone • Dots/labels = examples</div>
+      <img class="map-img" src="punjab-flood-map@2x.png" alt="Punjab flood-prone map (PNG, annotated)">
+    </div>
+    <div class="card">
+      <div class="head"><span class="ico">🗺️</span> District snapshots</div>
+      <ul class="muted tight">
+        <li><b>Gurdaspur:</b> 329 villages flooded, 1.45 lakh people affected, 40,000+ ha crops lost. <i>Risk:</i> River changes, river bank flooding.</li>
+        <li><b>Amritsar:</b> 1.3 lakh people affected, crops damaged. <i>Risk:</i> Low-lying areas flood.</li>
+        <li><b>Ferozepur:</b> Heavy loss of crops and property. <i>Risk:</i> Canal breaks, embankment failures.</li>
+        <li><b>Fazilka:</b> 24,000+ people affected, big crop loss. <i>Risk:</i> River overflow.</li>
+        <li><b>Pathankot:</b> Villages underwater, people evacuated. <i>Risk:</i> River shifts, sudden water release.</li>
+        <li><b>Kapurthala:</b> Low areas flooded, evacuations done. <i>Risk:</i> Beas river backflow, encroachments.</li>
+        <li><b>Barnala:</b> Flood in some areas, relief ongoing. <i>Risk:</i> Low-lying land affected.</li>
+        <li><b>Hoshiarpur:</b> Flash floods in small streams. <i>Risk:</i> Hill torrents, heavy rainfall.</li>
+        <li><b>Jalandhar:</b> Waterlogging in city and villages. <i>Risk:</i> Poor drainage, low land.</li>
+      </ul>
+      <div class="small">Reading the map: move to higher ground, avoid underpasses, and follow release alerts.</div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- 6) SAFETY -->
+    <section class="slide" aria-label="Safety">
+      <div class="kicker">6 / 8 • Safety</div>
+      <h2 class="title">Flood management steps</h2>
+      <div class="row">
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">⬆️</span> Go higher</div><div class="muted">Stay out of basements and low floors. Move quickly to the roof or upper levels. Identify a safe shelter beforehand.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">⚡</span> Power/Gas off</div><div class="muted">Turn off electricity and gas if safe. Wet wires cause shocks or fire. Reconnect only after safety checks.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🎒</span> Grab kit</div><div class="muted">Keep a ready bag with water, food, medicines, torch, documents, cash, and power bank near exit.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🚫</span> Avoid water</div><div class="muted">Hidden Don’t walk in floodwater. It hides drains, currents, or electric wires. Even shallow water can be risky.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🚗</span> Don't drive in</div><div class="muted">30 cm water can float a car. Always take higher roads and follow barricades or diversion signs.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🧼</span> Safe water</div><div class="muted">Tap water may be unsafe. Boil for 3 minutes or use chlorine tablets. Keep tanks disinfected regularly.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🧒</span> Support vulnerable</div><div class="muted">Help kids, elderly, and disabled. Evacuate them early with required medicines and identity proofs.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🪢</span> Use ropes</div><div class="muted">Use ropes for balance and support. Avoid hand holding. Secure the rope tightly to a strong point.</div></div></div>
+        <div class="col-3"><div class="card kind-safety"><div class="head"><span class="ico">🦺</span> After flood</div><div class="muted">Inspect your house carefully. Avoid live wires and broken poles. Clean and disinfect everything touched by water.</div></div></div>
+      </div>
+      <div class="banner">Evacuate early if: release warning, water rising to ground floor, or heavy night rain forecast.</div>
+    </section>
+
+    <!-- 7) KIT -->
+      <section class="slide" aria-label="Kit">
+      <div class="kicker">7 / 8 • Kit</div>
+      <h2 class="title">Emergency kit — pack for 3 days (household)</h2>
+      <div class="row">
+        <div class="col-2">
+          <div class="card">
+            <div class="head"><span class="ico">🎒</span> Essentials</div>
+            <ul class="muted">
+              <li>Water (1–2 L/person/day), ORS</li>
+              <li>Dry food; baby/pet supplies (as needed)</li>
+              <li>Meds + prescriptions; first‑aid (bandages, antiseptic)</li>
+              <li>Torch + spare batteries; whistle</li>
+              <li>Phone + power bank + cables</li>
+              <li>Battery/hand‑crank radio</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="head"><span class="ico">🗂️</span> Documents</div>
+            <ul class="muted">
+              <li>IDs (Aadhaar, PAN), bank cards/passbook</li>
+              <li>Land/house papers; insurance policies</li>
+              <li>Printed contacts & local map</li>
+              <li>Waterproof pouches; cloud scans & a USB copy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="card">
+            <div class="head"><span class="ico">🧰</span> Tools & hygiene</div>
+            <ul class="muted">
+              <li>Rope, tape, multi‑tool, gloves</li>
+              <li>Soap, sanitizer, sanitary items</li>
+              <li>Masks, sturdy shoes, rain protection</li>
+              <li>Candles/matches or lighter</li>
+              <li>Cash (small notes)</li>
+            </ul>
+          </div>
+          <div class="banner">Keep kit near an exit. Update seasonally. Park vehicles on higher ground before heavy rain.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8) HELP -->
+    <section class="slide" aria-label="Help">
+      <div class="kicker">8 / 8 • Help</div>
+      <h2 class="title">Helplines and official resources</h2>
+      <div class="row">
+        <div class="col-2">
+          <div class="card" style="background:linear-gradient(180deg, #1e88e5, #166cc1); color:#fff;">
+            <div style="font-size:18px; opacity:.95; font-weight:800;">National Emergency</div>
+            <div style="font-size:54px; font-weight:1000; letter-spacing:2px; margin-top:6px;">112</div>
+            <div style="opacity:.9; margin-top:6px;">Say: location + people + callback</div>
+          </div>
+          <div class="card">
+            <ul class="muted">
+              <li>Fire: 101</li>
+              <li>Ambulance: 108</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="card">
+            <div class="head"><span class="ico">🌐</span> Resources</div>
+            <ul class="muted">
+              <li>Punjab SDMA: https://sdma.punjab.gov.in</li>
+              <li>NDRF: https://ndrf.gov.in</li>
+              <li>IMD (weather): https://mausam.imd.gov.in</li>
+              <li>CWC Flood: https://ffs.india-water.gov.in</li>
+            </ul>
+          </div>
+          <div class="banner">Follow district control room advisories. Verify release notices and river bulletins during monsoon.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
